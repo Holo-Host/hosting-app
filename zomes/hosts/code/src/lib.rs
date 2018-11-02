@@ -8,8 +8,12 @@ extern crate serde_json;
 
 use serde_json::Value;
 
-pub mod util;
 pub mod service_cycle;
+pub mod util;
+
+fn asdf() {
+    util::make_hash("askdlj");
+}
 
 define_zome! {
     entries: [

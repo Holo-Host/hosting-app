@@ -14,7 +14,7 @@ test('description of example test', (t) => {
 
   // Make a call to a Zome function
   // indicating the capability and function, and passing it an input
-  const result = app.call("providers", "main", "add-app", "input")
+  const result = app.call("hosts", "main", "log_service", `"input"`)
 
   // check for equality of the actual and expected results
   t.equal(result, "expected result!")

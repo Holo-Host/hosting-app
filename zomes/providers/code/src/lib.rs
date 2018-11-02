@@ -16,7 +16,7 @@ pub struct Provider {
     fuel_address: String,
 }
 
-pub fn add_app() {
+pub fn handle_add_app() {
 
 }
 
@@ -44,10 +44,10 @@ define_zome! {
 
     functions: {
         main (Public) {
-            log_service: {
+            add_app: {
                 inputs: | |,
                 outputs: |unit: ()|,
-                handler: add_app
+                handler: handle_add_app
             }
         }
     }
