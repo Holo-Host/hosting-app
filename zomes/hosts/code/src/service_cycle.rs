@@ -5,6 +5,7 @@ use hdk::{
     holochain_core_types::{hash::HashString, validation::EntryAction},
     holochain_dna::zome::entry_types::Sharing,
 };
+use serde::{Serialize};
 use serde_json::{self, Value};
 
 use super::util;
@@ -71,12 +72,15 @@ fn validation(log: ServiceCycle, ctx: hdk::ValidationData) -> Result<(), String>
     }
 }
 
-pub fn log_service(
+pub fn log_service<S, T>(
     agent_key: String,
-    request_payload: Value,
-    response_payload: Value,
-    metrics: ServiceMetrics,
-) -> ZomeApiResult<HashString> {
+    request_payload: S,
+    response_payload: T,
+    metrics: ServiceMetrics
+) -> ZomeApiResult<HashString>
+where S: Serialize,
+      T: Serialize
+{
     let log = ServiceCycle {
         agent_key,
         metrics,

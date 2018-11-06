@@ -1,5 +1,5 @@
 [package]
-  name = "hosts"
+  name = "holo_dapp_hosts"
   version = "0.1.0"
   authors = ["Michael Dougherty <maackle.d@gmail.com>"]
   edition = "2018"
