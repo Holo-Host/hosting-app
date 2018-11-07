@@ -5,7 +5,7 @@ use hdk::{
     holochain_core_types::{hash::HashString, validation::EntryAction},
     holochain_dna::zome::entry_types::Sharing,
 };
-use serde::{Serialize};
+use serde::Serialize;
 use serde_json::{self, Value};
 
 use super::util;
@@ -30,9 +30,9 @@ pub struct SignedData {
 
 #[derive(Serialize, Deserialize)]
 pub struct ServiceMetrics {
-    cpu_time: f32,
-    bytes_in: u32,
-    bytes_out: u32,
+    cpu_seconds: f64,
+    bytes_in: usize,
+    bytes_out: usize,
 }
 
 pub fn definition() -> ValidatingEntryType {
@@ -76,10 +76,11 @@ pub fn log_service<S, T>(
     agent_key: String,
     request_payload: S,
     response_payload: T,
-    metrics: ServiceMetrics
+    metrics: ServiceMetrics,
 ) -> ZomeApiResult<HashString>
-where S: Serialize,
-      T: Serialize
+where
+    S: Serialize,
+    T: Serialize,
 {
     let log = ServiceCycle {
         agent_key,
