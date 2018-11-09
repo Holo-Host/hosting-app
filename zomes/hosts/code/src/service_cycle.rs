@@ -14,25 +14,25 @@ const ENTRY_NAME: &str = "service_cycle";
 
 #[derive(Serialize, Deserialize)]
 pub struct ServiceCycle {
-    agent_key: String,
-    request_hash: HashString,
-    response_hash: HashString,
-    metrics: ServiceMetrics,
-    signature: Option<String>,
+    pub agent_key: String,
+    pub request_hash: HashString,
+    pub response_hash: HashString,
+    pub metrics: ServiceMetrics,
+    pub signature: Option<String>,
 }
 
 /// The data which the client will sign
 #[derive(Serialize, Deserialize)]
-pub struct SignedData {
+struct SignedData {
     // metrics: ServiceMetrics,
     response_hash: HashString,
 }
 
 #[derive(Serialize, Deserialize)]
 pub struct ServiceMetrics {
-    cpu_seconds: f64,
-    bytes_in: usize,
-    bytes_out: usize,
+    pub cpu_seconds: f64,
+    pub bytes_in: usize,
+    pub bytes_out: usize,
 }
 
 pub fn definition() -> ValidatingEntryType {

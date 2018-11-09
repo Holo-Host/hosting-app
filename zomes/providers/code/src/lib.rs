@@ -1,3 +1,4 @@
+#![feature(try_from)]
 #[macro_use]
 extern crate hdk;
 extern crate serde;
@@ -5,10 +6,19 @@ extern crate serde;
 extern crate serde_derive;
 #[macro_use]
 extern crate serde_json;
+#[macro_use]
+extern crate holochain_core_types_derive;
 
 use hdk::{
+    holochain_core_types::{
+        entry::Entry, error::HolochainError, hash::HashString, json::JsonString,
+        validation::EntryAction,
+    },
     holochain_dna::zome::entry_types::Sharing,
 };
+
+pub mod entries;
+pub mod util;
 
 #[derive(Serialize, Deserialize)]
 pub struct Provider {
@@ -16,26 +26,14 @@ pub struct Provider {
     fuel_address: String,
 }
 
-pub fn handle_add_app() {
-
+fn handle_register_app(p: entries::AppConfig) -> JsonString {
+    util::make_handler(entries::app_config::register_app)(p)
 }
 
 define_zome! {
     entries: [
-        entry!(
-            name: "provider",
-            description: "An app provider",
-            sharing: Sharing::Public,
-            native_type: Provider,
-
-            validation_package: || {
-                hdk::ValidationPackageDefinition::Entry
-            },
-
-            validation: |entry: Provider, _ctx: hdk::ValidationData| {
-                Ok(())
-            }
-        )
+        entries::app_config::definition(),
+        entries::provider::definition()
     ]
 
     genesis: || {
@@ -44,10 +42,10 @@ define_zome! {
 
     functions: {
         main (Public) {
-            add_app: {
-                inputs: | |,
+            register_app: {
+                inputs: |config: entries::AppConfig|,
                 outputs: |unit: ()|,
-                handler: handle_add_app
+                handler: handle_register_app
             }
         }
     }

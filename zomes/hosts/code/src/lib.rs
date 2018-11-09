@@ -14,10 +14,6 @@ pub use self::service_cycle::{ServiceCycle, ServiceMetrics};
 pub mod service_cycle;
 pub mod util;
 
-fn asdf() {
-    util::make_hash("askdlj");
-}
-
 define_zome! {
     entries: [
         service_cycle::definition()
