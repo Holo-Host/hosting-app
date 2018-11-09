@@ -2,5 +2,4 @@
 
 members = [
   "zomes/providers/code",
-  "zomes/hosts/code",
 ]

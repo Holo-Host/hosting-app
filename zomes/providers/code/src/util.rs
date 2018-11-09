@@ -10,11 +10,6 @@ use multihash::Hash as Multihash;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
-pub fn make_err<E: Into<String>>(msg: E) -> JsonString {
-    let msg: String = msg.into();
-    json!({ "error": msg }).into()
-}
-
 type FuncDef<P, V, E> = fn(P) -> Result<V, E>;
 
 /// Take a function that returns a Result<> of two Into<JsonString> things

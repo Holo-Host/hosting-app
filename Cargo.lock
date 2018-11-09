@@ -195,18 +195,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "holo_dapp_hosts"
-version = "0.1.0"
-dependencies = [
- "hdk 0.0.1 (git+https://github.com/holochain/holochain-rust?branch=develop)",
- "holochain_wasm_utils 0.0.1 (git+https://github.com/holochain/holochain-rust?branch=develop)",
- "multihash 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "serde 1.0.80 (registry+https://github.com/rust-lang/crates.io-index)",
- "serde_derive 1.0.80 (registry+https://github.com/rust-lang/crates.io-index)",
- "serde_json 1.0.32 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
 name = "holochain_core_types"
 version = "0.0.1"
 source = "git+https://github.com/holochain/holochain-rust?branch=develop#1c4b59585d9791191d27fa1e3a6b3297361f7314"
